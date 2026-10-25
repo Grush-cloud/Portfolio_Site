@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>George Ashinze · Cybersecurity Analyst · Grushtech</title>
+    <meta name="description" content="George Ashinze: cyber security analyst and IT officer in Abuja. Explore a 3D homelab rack where every device opens part of the CV." />
+    <meta name="theme-color" content="#07090c" />
+    <!-- link previews (LinkedIn, Slack, email) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://grushtech.com/" />
+    <meta property="og:title" content="George Ashinze · Cybersecurity Analyst & IT Officer" />
+    <meta property="og:description" content="Abuja-based cybersecurity analyst. CompTIA Security+, MSc Cyber Security & Penetration Testing. Explore the CV as a 3D homelab rack." />
+    <meta property="og:image" content="https://grushtech.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app" hidden>
+      <div id="stage"></div>
+      <header class="hud">
+        <div class="id">
+          <span class="brand">grushtech<span class="cursor">_</span></span>
+          <h1 id="who"></h1>
+          <p id="role"></p>
+          <p id="creds"></p>
+          <p class="cta">
+            <a id="email-btn" class="btn primary">Email me</a>
+            <button id="to-text" class="btn" type="button">View CV</button>
+            <a class="btn" href="/George-Ashinze-CV.pdf" download>Download CV</a>
+          </p>
+        </div>
+      </header>
+      <nav class="top-nav"><a href="/blog/">blog</a></nav>
+      <p class="hint">drag to orbit · scroll to zoom · click the hardware</p>
+      <nav id="dock" aria-label="Rack devices"></nav>
+      <div id="label" aria-hidden="true"></div>
+      <aside id="panel" class="panel" role="dialog" aria-labelledby="panel-title">
+        <header>
+          <h2 id="panel-title"></h2>
+          <button id="panel-close" type="button" aria-label="Close panel">esc</button>
+        </header>
+        <div id="panel-body"></div>
+      </aside>
+      <div id="boot">
+        <pre id="boot-log"></pre>
+        <button id="boot-skip" type="button">skip ›</button>
+      </div>
+    </div>
+    <main id="cv"><!--CV--></main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
