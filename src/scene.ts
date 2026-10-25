@@ -348,7 +348,7 @@ export function createScene(host: HTMLElement, label: HTMLElement, onPick: (t: T
   let down = { x: 0, y: 0 }
   renderer.domElement.addEventListener('pointerdown', e => (down = { x: e.clientX, y: e.clientY }))
   renderer.domElement.addEventListener('pointerup', e => {
-    if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) return // was a drag
+    if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > (e.pointerType === 'touch' ? 14 : 6)) return // was a drag (fingers wobble more)
     const t = pick(e)
     if (t) onPick(t)
   })

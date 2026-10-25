@@ -61,7 +61,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 6px 10px; border: 1px solid transparent; border-radius: 4px; transition: color 0.15s, border-color 0.15s;
 }
 .top-nav a:hover { color: var(--text); border-color: var(--edge); }
-#app.panel-open .top-nav { opacity: 0; pointer-events: none; }
+#app.panel-open .top-nav { opacity: 0; visibility: hidden; }
 .hint {
   position: absolute; left: 28px; bottom: 96px; margin: 0;
   font: 12px var(--mono); color: var(--muted); letter-spacing: 0.04em;
@@ -84,8 +84,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 #app.panel-open .hint { opacity: 0; }
 /* portrait: the bottom sheet leaves little room above it, so give it to the device */
 @media (orientation: portrait) {
-  .hud { transition: opacity 0.2s; }
-  #app.panel-open .hud { opacity: 0; pointer-events: none; }
+  .hud { transition: opacity 0.2s, visibility 0s; }
+  /* visibility (not just opacity) so the invisible buttons can't catch taps meant for the rack */
+  #app.panel-open .hud { opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0s 0.2s; }
 }
 .hint { transition: opacity 0.2s; }
 #dock button {
