@@ -43,8 +43,9 @@ export function start() {
     panelBody.innerHTML = t.section === 'honeypot' ? honeypot() : renderSection(t.section, t.index)
     panel.classList.add('open')
     app.classList.add('panel-open')
-    // scrollIntoView would also scroll the overflow-hidden #app sideways, so scroll the panel only
-    panelBody.scrollTop = (panelBody.querySelector<HTMLElement>('.hl')?.offsetTop ?? 8) - 8
+    // scrollIntoView would also scroll the overflow-hidden #app sideways, so scroll the panel only.
+    // Done a frame later, once the panel is visible: iOS Safari skips painting content changed while it was hidden.
+    requestAnimationFrame(() => (panelBody.scrollTop = Math.max(0, (panelBody.querySelector<HTMLElement>('.hl')?.offsetTop ?? 0) - 8)))
     $('#panel-close').focus()
   }
 
