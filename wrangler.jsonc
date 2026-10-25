@@ -1,0 +1,11 @@
+// Cloudflare Workers deploy settings for the static site (built by `npm run build` into dist/).
+{
+  "name": "portfolio-site",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    // missing pages get dist/404.html with a real 404 status, not the homepage
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
