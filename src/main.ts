@@ -9,9 +9,8 @@ const webgl = (() => {
 })()
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches
 
-// Shorter side under 600px = a phone in either orientation; tablets and up get 3D.
-// ponytail: decided once at load; resizing afterwards keeps whichever mode was picked.
-if (webgl && !calm && Math.min(innerWidth, innerHeight) >= 600) {
+// Every screen size gets 3D; the text CV is one tap away via "View CV".
+if (webgl && !calm) {
   document.body.classList.add('mode-3d')
   import('./app').then(m => m.start())
 }

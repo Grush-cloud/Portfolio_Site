@@ -251,3 +251,19 @@ mark.todo { background: rgba(255, 181, 71, 0.15); color: var(--amber); font: 12p
   article { border-left: 0; padding: 0; margin: 6pt 0; background: none !important; break-inside: avoid; }
   #cv h2, #cv h3 { break-after: avoid; }
 }
+
+/* ---------- Phones: compact chrome so the rack gets the screen ---------- */
+@media (max-height: 500px), (max-width: 480px) {
+  .hud { padding: 16px 40px 28px 16px; }
+  #who { margin-top: 8px; font-size: 24px; }
+  #role { font-size: 13px; }
+  .cta { margin-top: 10px; }
+  .btn { padding: 6px 10px; font-size: 11px; }
+  .top-nav { top: 12px; right: 12px; }
+  #dock { bottom: 12px; padding: 4px; }
+  #dock button { padding: 6px 9px; font-size: 11px; gap: 6px; }
+}
+/* landscape phones: no room for the credentials line or the hint */
+@media (max-height: 500px) {
+  #creds, .hint { display: none; }
+}

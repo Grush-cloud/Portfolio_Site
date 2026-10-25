@@ -49,13 +49,19 @@ export function createScene(host: HTMLElement, label: HTMLElement, onPick: (t: T
   scene.environmentIntensity = 0.6
 
   const camera = new THREE.PerspectiveCamera(40, host.clientWidth / host.clientHeight, 0.1, 100)
-  camera.position.copy(HOME_POS)
+  // Overview framing tuned for landscape; on narrow (portrait) screens pull back and centre on the rack
+  const home = () => {
+    const a = camera.aspect
+    const t = a < 1 ? V(0, 2.9, 0) : HOME_TARGET.clone()
+    return { pos: t.clone().add(HOME_POS.clone().sub(HOME_TARGET).multiplyScalar(Math.max(1, 0.95 / a))), tgt: t }
+  }
+  camera.position.copy(home().pos)
   const controls = new OrbitControls(camera, renderer.domElement)
-  controls.target.copy(HOME_TARGET)
+  controls.target.copy(home().tgt)
   controls.enableDamping = true
   controls.enablePan = false
   controls.minDistance = 2
-  controls.maxDistance = 16
+  controls.maxDistance = 26 // room for the pulled-back portrait overview
   controls.maxPolarAngle = Math.PI * 0.52
   controls.minAzimuthAngle = -1.3
   controls.maxAzimuthAngle = 1.3
@@ -367,7 +373,10 @@ export function createScene(host: HTMLElement, label: HTMLElement, onPick: (t: T
     const tgt = p.clone().add(V((cover.x / 2) * k * d * camera.aspect, -(cover.y / 2) * k * d, 0))
     flyTo(tgt.clone().addScaledVector(VIEW_DIR, d), tgt)
   }
-  const overview = () => flyTo(HOME_POS.clone(), HOME_TARGET.clone())
+  const overview = () => {
+    const h = home()
+    flyTo(h.pos, h.tgt)
+  }
 
   // --- loop -----------------------------------------------------------------
   let powerAt = Infinity
